@@ -49,7 +49,7 @@ public class ClusterStatusTask extends RecursiveTask<List<ServerStatus>>
         us = Iterables.find(specs, ServerList.isUs(exhibitor.getThisJVMHostname()), null);
     }
 
-    public ClusterStatusTask(Exhibitor exhibitor, List<ServerSpec> specs)
+    private ClusterStatusTask(Exhibitor exhibitor, List<ServerSpec> specs, int from, int to)
     {
         this(exhibitor, specs);
         this.from = from;
