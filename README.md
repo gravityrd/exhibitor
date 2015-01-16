@@ -1,6 +1,22 @@
 ## DESCRIPTION
 Exhibitor is a supervisor system for ZooKeeper.
 
+## QUICK HOW TO
+
+* Use `./gradlew` to bootstrap gradle (2.2.1).
+* Get JDK8  http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html
+* Then `./gradlew jar` to get `exhibitor-standalone/build/libs/exhibitor-standalone-1.5.3-SNAPSHOT.jar`.
+* `mkdir -p /usr/local/exhibitor /usr/local/exhibitor/config_data`
+* `mv exhibitor-standalone/build/libs/exhibitor-standalone-1.5.3-SNAPSHOT.jar /usr/local/exhibitor/exhibitor.jar`
+* `mv scripts/run.sh /usr/local/exhibitor/run.sh`
+For Debian (pre-systemd):
+* `mv scripts/exhibitor.initscript /etc/init.d/exhibitor`
+* `update-rc.d exhibitor defaults`
+
+* Check the scripts, edit if needed.
+* `/etc/init.d/exhibitor start`
+* Go to `http://$(hostname -f):5252/exhibitor/v1/ui/index.html` 
+
 ## DETAILS
 
 Please see the doc at https://github.com/Netflix/exhibitor/wiki

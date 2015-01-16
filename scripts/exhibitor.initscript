@@ -1,0 +1,28 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:	  exhibitor
+# Required-Start:    $local_fs $remote_fs $network $syslog $named
+# Required-Stop:     $local_fs $remote_fs $network $syslog $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the exhibitor web thingy
+# Description:       starts exhibitor via the hacked run.sh
+### END INIT INFO
+
+RUN=/usr/local/exhibitor/run.sh
+
+case "$1" in
+	start)
+        start-stop-daemon --start --oknodo --background --make-pidfile --pidfile /var/run/exhibitor.pid  --startas /bin/bash -- $RUN
+		;;
+	stop)
+        start-stop-daemon --stop --pidfile /var/run/exhibitor.pid
+		;;
+	restart)
+        start-stop-daemon --stop --pidfile /var/run/exhibitor.pid
+        start-stop-daemon --start --oknodo --background --make-pidfile --pidfile /var/run/exhibitor.pid  --startas /bin/bash -- $RUN
+		;;
+esac
+
+:
